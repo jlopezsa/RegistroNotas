@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MiPrimerEstilo"
+        parent = "@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">#FFEB3B</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="EstiloTitulo"
+        parent = "@android:style/TextAppearance.Large">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">#FF5722</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="EstiloBoton"
+        parent = "@android:style/TextAppearance.Medium">
+        <item name="android:textColor">#FFEB3B</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:backgroundTint">#9C27B0</item>
+        <item name="android:layout_marginRight">100dp</item>
+        <item name="android:layout_marginLeft">100dp</item>
+    </style>
+
+    <style name="EstiloEtiqueta"
+        parent = "@android:style/TextAppearance.Small">
+        <item name="android:layout_width">100dp</item>
+    </style>
+
+</resources>
