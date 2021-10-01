@@ -28,7 +28,7 @@ public class Estudiante {
         return notas_corte;
     }
 
-    public void Calculatotal_corte() {
+    public void calculatotal_corte() {
         total_corte = (float)(0.3*notas_corte.getTrabajos() + 0.3*notas_corte.getAutoevaluacion() + 0.4*notas_corte.getParcial());
     }
     public float getTotal_corte() {

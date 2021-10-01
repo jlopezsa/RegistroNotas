@@ -85,7 +85,7 @@
                 android:text="Autoevaluación" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/txt_autoevaluacion"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -109,7 +109,7 @@
                 android:text="Trabajos" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/txt_trabajos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -133,7 +133,7 @@
                 android:text="Parcial" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/txt_parcial"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -144,11 +144,18 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_notas"
             style="@style/EstiloBoton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ingresar Nota" />
+
+        <Button
+            android:id="@+id/btn_regresar"
+            style="@style/EstiloBoton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Regresar" />
 
     </LinearLayout>
 
