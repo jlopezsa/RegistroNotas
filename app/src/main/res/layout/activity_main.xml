@@ -14,7 +14,7 @@
         <TextView
             style="@style/EstiloTitulo"
             android:id="@+id/textView3"
-            android:text="Home" />
+            android:text="Registro de notas" />
 
         <TextView
             style="@style/MiPrimerEstilo"
