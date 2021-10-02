@@ -36,25 +36,21 @@ public class RegistrarActivity extends Activity {
         boton_regresar = (Button)findViewById(R.id.btn_regresar);
 
         materia_reg = new Materia();
-        estudiante_reg = new Estudiante();
-        corte_notas = new Corte();
-
-        Log.i("FLAG1","Fuera boton");
 
         boton_reg_alumno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                estudiante_reg = new Estudiante();
+
                 materia_reg.setNombre_materia(ingresa_disciplina.getText().toString());
                 estudiante_reg.setNombre(ingresa_estudiante.getText().toString());
-
-                Log.i("FLAG1",materia_reg.getNombre_materia());
-                Log.i("FLAG1",estudiante_reg.getNombre());
             }
         });
 
         boton_reg_notas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                corte_notas = new Corte();
                 corte_notas.setAutoevaluacion(Float.valueOf(in_autoevaluacion.getText().toString()));
                 corte_notas.setTrabajos(Float.valueOf(in_trabajos.getText().toString()));
                 corte_notas.setParcial(Float.valueOf(in_parcial.getText().toString()));
@@ -63,7 +59,6 @@ public class RegistrarActivity extends Activity {
                 materia_reg.setEstudiantes(estudiante_reg);
                 estudiante_reg.calculatotal_corte();
 
-                Log.i("FLAG2",String.valueOf(materia_reg.getEstudiantes(contador).getNombre()));
                 contador++;
             }
         });
@@ -80,6 +75,7 @@ public class RegistrarActivity extends Activity {
         Intent i = new Intent(this,MainActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("MATERIA", materia_reg);
+        i.putExtras(bundle);
         startActivity(i);
     }
 

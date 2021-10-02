@@ -3,4 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/EstiloTitulo"
+            android:text="Visualizar Registro" />
+
+        <TextView
+            android:id="@+id/txt_visualizar"
+            style="@style/MiPrimerEstilo"
+            android:gravity="left"
+            android:singleLine="false"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btn_ver_notas"
+            style="@style/EstiloBoton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ver Notas" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

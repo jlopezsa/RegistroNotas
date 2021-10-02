@@ -12,8 +12,8 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/EstiloTitulo"
             android:id="@+id/textView3"
+            style="@style/EstiloTitulo"
             android:text="Registro de notas" />
 
         <TextView
