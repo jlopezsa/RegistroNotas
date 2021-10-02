@@ -21,7 +21,8 @@ public class RegistrarActivity extends Activity {
     private int contador = 0;
 
 
-    @Override public void onCreate(Bundle saveInstanceState){
+    @Override
+    public void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_registrar);
 
@@ -41,7 +42,6 @@ public class RegistrarActivity extends Activity {
             @Override
             public void onClick(View view) {
                 estudiante_reg = new Estudiante();
-
                 materia_reg.setNombre_materia(ingresa_disciplina.getText().toString());
                 estudiante_reg.setNombre(ingresa_estudiante.getText().toString());
             }
