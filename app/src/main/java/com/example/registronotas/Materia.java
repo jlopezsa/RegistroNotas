@@ -13,18 +13,11 @@ public class Materia implements Serializable {
     public Materia(){
         estudiantes = new ArrayList<Estudiante>();
     }
-    public Materia(String nombre_materia){  
-        this.nombre_materia = nombre_materia;
-        estudiantes = new ArrayList<Estudiante>();
-        nota_media = 0;
-    }
 
     public void setNombre_materia(String nombre_materia) {
-
         this.nombre_materia = nombre_materia;
     }
     public String getNombre_materia() {
-
         return nombre_materia;
     }
 

@@ -1,41 +1,34 @@
 package com.example.registronotas;
 
-import java.io.Serializable;
-
-public class Corte implements Serializable {
+public class CorteAux {
     private float trabajos;
     private float autoevaluacion;
     private float parcial;
-    
 
-    public Corte(){
+    public CorteAux(){
 
     }
 
     public void setTrabajos(float trabajos) {
-
         this.trabajos = trabajos;
     }
-    public float getTrabajos() {
 
+    public float getTrabajos() {
         return trabajos;
     }
 
     public void setAutoevaluacion(float autoevaluacion) {
-
         this.autoevaluacion = autoevaluacion;
     }
     public float getAutoevaluacion() {
-
         return autoevaluacion;
     }
 
     public void setParcial(float parcial) {
-
         this.parcial = parcial;
     }
-    public float getParcial() {
 
+    public float getParcial() {
         return parcial;
     }
 }

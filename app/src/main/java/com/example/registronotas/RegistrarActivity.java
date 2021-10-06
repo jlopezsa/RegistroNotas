@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class RegistrarActivity extends Activity {
@@ -14,36 +15,42 @@ public class RegistrarActivity extends Activity {
     private Estudiante estudiante_reg;
     private Corte corte_notas;
 
-    private TextView ingresa_disciplina, ingresa_estudiante;
-    private TextView in_autoevaluacion, in_trabajos, in_parcial;
-    private Button boton_reg_alumno, boton_reg_notas, boton_regresar;
-
-    private int contador = 0;
-
+    private Button boton_regresar, boton_reg_alumno,boton_reg_notas;
+    private EditText ingresa_disciplina;
 
     @Override
     public void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_registrar);
 
-        ingresa_disciplina = (TextView)findViewById(R.id.txt_disciplina);
-        ingresa_estudiante = (TextView)findViewById(R.id.txt_alumno);
-        in_autoevaluacion = (TextView)findViewById(R.id.txt_autoevaluacion);
-        in_trabajos = (TextView)findViewById(R.id.txt_trabajos);
-        in_parcial = (TextView)findViewById(R.id.txt_parcial);
-
-        boton_reg_alumno = (Button)findViewById(R.id.btn_ingresa_alumno);
-        boton_reg_notas = (Button)findViewById(R.id.btn_notas);
-        boton_regresar = (Button)findViewById(R.id.btn_regresar);
-
         materia_reg = new Materia();
 
+
+
+        // Asociar objetos de la vista con el código
+        ingresa_disciplina = (EditText) findViewById(R.id.txt_disciplina);
+
+        boton_regresar = (Button)findViewById(R.id.btn_regresar);
+        boton_reg_alumno = (Button)findViewById(R.id.btn_ingresa_alumno);
+        boton_reg_notas = (Button)findViewById(R.id.btn_notas);
+        //------------------------------------------
+
+
+        // Creando los Listener de los botones
         boton_reg_alumno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                estudiante_reg = new Estudiante();
                 materia_reg.setNombre_materia(ingresa_disciplina.getText().toString());
-                estudiante_reg.setNombre(ingresa_estudiante.getText().toString());
+                Log.i("REGISTRAR",ingresa_disciplina.getText().toString());
+                //Log.i("REGISTRAR",materia_reg.getNombre_materia());
+                estudiante_reg = new Estudiante();
+
+                // Adicionar código para ingresar el nombre del estudiante
+
+                //estudiante_reg.setNombre(); // <------------------- Completar
+
+
+
             }
         });
 
@@ -51,15 +58,12 @@ public class RegistrarActivity extends Activity {
             @Override
             public void onClick(View view) {
                 corte_notas = new Corte();
-                corte_notas.setAutoevaluacion(Float.valueOf(in_autoevaluacion.getText().toString()));
-                corte_notas.setTrabajos(Float.valueOf(in_trabajos.getText().toString()));
-                corte_notas.setParcial(Float.valueOf(in_parcial.getText().toString()));
 
-                estudiante_reg.setNotas_corte(corte_notas);
-                materia_reg.setEstudiantes(estudiante_reg);
-                estudiante_reg.calculatotal_corte();
+                // Adicionar código para ingresar Las nótas del estudiante
 
-                contador++;
+                //corte_notas.setAutoevaluacion();
+                //corte_notas.setParcial();
+                //corte_notas.setTrabajos();
             }
         });
 
@@ -69,13 +73,11 @@ public class RegistrarActivity extends Activity {
                 lanzarHome(null);
             }
         });
+
     }
 
     public void lanzarHome(View view){
         Intent i = new Intent(this,MainActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("MATERIA", materia_reg);
-        i.putExtras(bundle);
         startActivity(i);
     }
 
