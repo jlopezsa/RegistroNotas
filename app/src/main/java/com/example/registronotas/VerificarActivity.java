@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class VerificarActivity extends Activity {
 
     private TextView muestra_resultado;
-    private RecyclerView pantalla;
     private Button boton_ver_datos;
     private Materia materia_reg = null;
 

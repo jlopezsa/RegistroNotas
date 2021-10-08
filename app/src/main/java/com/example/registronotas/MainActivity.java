@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
     private Button boton_registrar;
     private Button boton_verificar;
     private Materia materia_reg = null;
-    private Bundle objeto_rx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +51,9 @@ public class MainActivity extends AppCompatActivity {
     public void lanzarVerificar(View view){
         Intent i = new Intent(this,VerificarActivity.class);
         // Enviando un objeto para otra actividad
-        //if(materia_reg!=null){
             Bundle bundle = new Bundle();
             bundle.putSerializable("MATERIA_VERIFICAR", materia_reg);
             i.putExtras(bundle);
-        //}
         startActivity(i);
     }
 }
