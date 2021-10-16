@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/EstiloTitulo"
+            android:id="@+id/txt_titulo_ayuda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actividad Ayuda" />
+
+        <TextView
+            style="@style/MiPrimerEstilo"
+            android:id="@+id/text_ayuda_info"
+            android:layout_width="match_parent"
+            android:text="Cuadro de texto donde aparecen alunas informaciones relacionadas a la ayuda de nuestro aplicativo" />
+
+        <Button
+            style="@style/EstiloBoton"
+            android:id="@+id/btn_regresar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Regresar" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

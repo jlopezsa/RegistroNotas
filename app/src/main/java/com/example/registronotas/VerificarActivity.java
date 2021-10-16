@@ -1,16 +1,24 @@
 package com.example.registronotas;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class VerificarActivity extends Activity {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.TimeZone;
+
+public class VerificarActivity extends AppCompatActivity {
 
     private TextView muestra_resultado;
     private Button boton_ver_datos;
@@ -28,7 +36,7 @@ public class VerificarActivity extends Activity {
         // Recibiendo objeto desde Main
         Bundle objeto_rx_of_main = getIntent().getExtras();
         if(objeto_rx_of_main!=null){
-            materia_reg = (Materia) objeto_rx_of_main.getSerializable("MATERIA_VERIFICAR");
+            materia_reg = (Materia) objeto_rx_of_main.getSerializable("MATERIA");
         }
 
         boton_ver_datos.setOnClickListener(new View.OnClickListener() {
@@ -42,9 +50,50 @@ public class VerificarActivity extends Activity {
                 }
                 else{
                     muestra_resultado.setText("Alumnos no registrados \n");
-                    muestra_resultado.append("Intente de nuevo");
+                    muestra_resultado.append("Intente de nuevo \n");
+
+                    //String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+                    //muestra_resultado.append(timeStamp);
+
+                    SimpleDateFormat formatoHoraFecha = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                    formatoHoraFecha.setTimeZone(TimeZone.getTimeZone("GMT-5"));
+                    String timeStamp = formatoHoraFecha.format(Calendar.getInstance().getTime());
+                    muestra_resultado.append(timeStamp);
+
+
+                    //String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                    //muestra_resultado.append(currentDateTimeString);
                 }
             }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id == R.id.actionbar_registrar){
+            lanzarRegistrar(null);
+            return true;
+        }
+        if(id == R.id.actionbar_ayuda){
+            lanzarAyuda(null);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void lanzarRegistrar(View view){
+        Intent i = new Intent(this,RegistrarActivity.class);
+        startActivity(i);
+    }
+    public void lanzarAyuda(View view){
+        Intent i = new Intent(this,AyudaActivity.class);
+        startActivity(i);
+    }
+
 }

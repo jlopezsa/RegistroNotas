@@ -1,14 +1,19 @@
 package com.example.registronotas;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class RegistrarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class RegistrarActivity extends AppCompatActivity {
 
     private Materia materia_reg;
     private Estudiante estudiante_reg;
@@ -51,9 +56,29 @@ public class RegistrarActivity extends Activity {
             @Override
             public void onClick(View view) {
                 corte_notas = new Corte();
-                corte_notas.setAutoevaluacion(Float.valueOf(in_autoevaluacion.getText().toString()));
-                corte_notas.setTrabajos(Float.valueOf(in_trabajos.getText().toString()));
-                corte_notas.setParcial(Float.valueOf(in_parcial.getText().toString()));
+                try {
+                    corte_notas.setAutoevaluacion(Float.valueOf(in_autoevaluacion.getText().toString()));
+                    corte_notas.setTrabajos(Float.valueOf(in_trabajos.getText().toString()));
+                    corte_notas.setParcial(Float.valueOf(in_parcial.getText().toString()));
+
+                    if(corte_notas.getParcial()<0||corte_notas.getParcial()>5){
+                        lanzaAdvertenciaFueraRano();
+                    }
+                    if(corte_notas.getAutoevaluacion()<0||corte_notas.getAutoevaluacion()>5){
+                        lanzaAdvertenciaFueraRano();
+                    }
+                    if(corte_notas.getTrabajos()<0||corte_notas.getTrabajos()>5){
+                        lanzaAdvertenciaFueraRano();
+                    }
+                }catch (Exception e){
+                    Log.i("REGISTRAR","Ingrese numero real");
+                    AlertDialog.Builder alerta = new AlertDialog.Builder(RegistrarActivity.this);
+                    alerta.setMessage("Ingrese un numero real");
+                    AlertDialog titulo = alerta.create();
+                    titulo.setTitle("Cuidado");
+                    titulo.show();
+                }
+
 
                 estudiante_reg.setNotas_corte(corte_notas);
                 materia_reg.setEstudiantes(estudiante_reg);
@@ -71,11 +96,49 @@ public class RegistrarActivity extends Activity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id == R.id.actionbar_verificar){
+            lanzarVerificar(null);
+            return true;
+        }
+        if(id == R.id.actionbar_ayuda){
+            lanzarAyuda(null);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void lanzaAdvertenciaFueraRano(){
+        AlertDialog.Builder alerta = new AlertDialog.Builder(RegistrarActivity.this);
+        alerta.setMessage("Notas Fuera del rango, las notas deben ser entre 0 y 5");
+        AlertDialog titulo = alerta.create();
+        titulo.setTitle("Notas con error");
+        titulo.show();
+    }
+
     public void lanzarHome(View view){
         Intent i = new Intent(this,MainActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("MATERIA", materia_reg);
         i.putExtras(bundle);
+        startActivity(i);
+    }
+    public void lanzarVerificar(View view){
+        Intent i = new Intent(this,VerificarActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("MATERIA", materia_reg);
+        i.putExtras(bundle);
+        startActivity(i);
+    }
+    public void lanzarAyuda(View view){
+        Intent i = new Intent(this,AyudaActivity.class);
         startActivity(i);
     }
 
