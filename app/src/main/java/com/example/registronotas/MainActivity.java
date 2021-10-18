@@ -84,10 +84,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void lanzarVerificar(View view){
         Intent i = new Intent(this,VerificarActivity.class);
-        // Enviando un objeto para otra actividad
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("MATERIA", materia_reg);
-            i.putExtras(bundle);
+            //Bundle bundle = new Bundle();
+            //bundle.putSerializable("MATERIA", materia_reg);
+            //i.putExtras(bundle);
         startActivity(i);
     }
     public void lanzarAyuda(View view){

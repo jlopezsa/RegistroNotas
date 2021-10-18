@@ -18,6 +18,7 @@ public class RegistrarActivity extends AppCompatActivity {
     private Materia materia_reg;
     private Estudiante estudiante_reg;
     private Corte corte_notas;
+    private GuardaEnTexto guardar = new GuardaEnTexto(this);
 
     private TextView ingresa_disciplina, ingresa_estudiante;
     private TextView in_autoevaluacion, in_trabajos, in_parcial;
@@ -42,6 +43,8 @@ public class RegistrarActivity extends AppCompatActivity {
         boton_regresar = (Button)findViewById(R.id.btn_regresar);
 
         materia_reg = new Materia();
+
+        guardar.limpiaArchivo();
 
         boton_reg_alumno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +87,8 @@ public class RegistrarActivity extends AppCompatActivity {
                 materia_reg.setEstudiantes(estudiante_reg);
                 estudiante_reg.calculatotal_corte();
 
+                guardar.escribeArchivo(estudiante_reg);
+
                 contador++;
             }
         });
@@ -125,16 +130,16 @@ public class RegistrarActivity extends AppCompatActivity {
 
     public void lanzarHome(View view){
         Intent i = new Intent(this,MainActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("MATERIA", materia_reg);
-        i.putExtras(bundle);
+        //Bundle bundle = new Bundle();
+        //bundle.putSerializable("MATERIA", materia_reg);
+        //i.putExtras(bundle);
         startActivity(i);
     }
     public void lanzarVerificar(View view){
         Intent i = new Intent(this,VerificarActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("MATERIA", materia_reg);
-        i.putExtras(bundle);
+        //Bundle bundle = new Bundle();
+        //bundle.putSerializable("MATERIA", materia_reg);
+        //i.putExtras(bundle);
         startActivity(i);
     }
     public void lanzarAyuda(View view){

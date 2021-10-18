@@ -14,15 +14,18 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 public class VerificarActivity extends AppCompatActivity {
 
     private TextView muestra_resultado;
     private Button boton_ver_datos;
-    private Materia materia_reg = null;
+    private Materia materia_reg;
+    private GuardaEnTexto leerDatos = new GuardaEnTexto(this);
 
     @Override public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
@@ -39,31 +42,39 @@ public class VerificarActivity extends AppCompatActivity {
             materia_reg = (Materia) objeto_rx_of_main.getSerializable("MATERIA");
         }
 
+        materia_reg = new Materia();
+
         boton_ver_datos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(materia_reg!=null){
+                /*if(materia_reg!=null){
                     for (int i = 0; i < materia_reg.getTotal_estudiantes(); i++) {
                         muestra_resultado.append(materia_reg.getEstudiantes(i).getNombre()+ getString(R.string.tab)+
                                 materia_reg.getEstudiantes(i).getTotal_corte()+"\n");
                     }
                 }
-                else{
-                    muestra_resultado.setText("Alumnos no registrados \n");
-                    muestra_resultado.append("Intente de nuevo \n");
+                else{*/
+                muestra_resultado.setText("");
+                SimpleDateFormat formatoHoraFecha = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                formatoHoraFecha.setTimeZone(TimeZone.getTimeZone("GMT-5"));
+                String timeStamp = formatoHoraFecha.format(Calendar.getInstance().getTime());
+                muestra_resultado.append(timeStamp+"\n");
 
-                    //String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
-                    //muestra_resultado.append(timeStamp);
+                //    muestra_resultado.setText("Alumnos no registrados \n");
+                //    muestra_resultado.append("Intente de nuevo \n");
 
-                    SimpleDateFormat formatoHoraFecha = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                    formatoHoraFecha.setTimeZone(TimeZone.getTimeZone("GMT-5"));
-                    String timeStamp = formatoHoraFecha.format(Calendar.getInstance().getTime());
-                    muestra_resultado.append(timeStamp);
+                    List<String> ver_datos = leerDatos.leeArchivo();
+                    //Log.i("VERIFICAR",String.valueOf(ver_datos.size()));
+                    for (int i = 0; i < ver_datos.size(); i++) {
+                        Log.i("VERIFICAR",ver_datos.get(i)+"\n");
+                        muestra_resultado.append(ver_datos.get(i)+"\n");
+                        //Log.i("VERIFICAR",String.valueOf(i));
+
+                    }
 
 
-                    //String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                    //muestra_resultado.append(currentDateTimeString);
-                }
+
+                //}
             }
         });
     }

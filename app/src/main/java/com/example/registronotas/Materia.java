@@ -1,9 +1,18 @@
 package com.example.registronotas;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import android.content.Context;
+import android.util.Log;
 
-public class Materia implements Serializable {
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Materia /*implements Serializable*/ {
 
     private String nombre_materia;
     private ArrayList<Estudiante> estudiantes;
@@ -39,4 +48,6 @@ public class Materia implements Serializable {
         total_estudiantes = estudiantes.size();
         return total_estudiantes;
     }
+
+
 }
