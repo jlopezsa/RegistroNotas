@@ -13,11 +13,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RegistrarActivity extends AppCompatActivity {
+import java.io.Serializable;
+
+public class RegistrarActivity extends AppCompatActivity implements Serializable {
 
     private Materia materia_reg;
     private Estudiante estudiante_reg;
     private Corte corte_notas;
+
     private GuardaEnTexto guardar = new GuardaEnTexto(this);
 
     private TextView ingresa_disciplina, ingresa_estudiante;
@@ -81,7 +84,6 @@ public class RegistrarActivity extends AppCompatActivity {
                     titulo.setTitle("Cuidado");
                     titulo.show();
                 }
-
 
                 estudiante_reg.setNotas_corte(corte_notas);
                 materia_reg.setEstudiantes(estudiante_reg);

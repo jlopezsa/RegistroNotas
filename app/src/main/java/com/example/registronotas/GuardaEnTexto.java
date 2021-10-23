@@ -21,7 +21,7 @@ public class GuardaEnTexto {
     public void escribeArchivo(Estudiante estudiantes) {
         try {
             FileOutputStream f = context.openFileOutput(FICHERO, Context.MODE_APPEND);
-            String texto = estudiantes.getNombre()+" "+estudiantes.getTotal_corte()+"\n";
+            String texto = estudiantes.getNombre()+";"+estudiantes.getTotal_corte()+";"+estudiantes.getNotas_corte().getParcial()+"\n"; // <---  Datos para guardar en archivo <----
             f.write(texto.getBytes());
             f.close();
         }catch(Exception e){
@@ -60,6 +60,4 @@ public class GuardaEnTexto {
             Log.e("GUARDA-WRITE",e.getMessage(),e);
         }
     }
-
-
 }

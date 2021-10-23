@@ -17,8 +17,9 @@
             android:id="@+id/txt_visualizar"
             style="@style/MiPrimerEstilo"
             android:gravity="left"
+            android:scrollbars="vertical"
             android:singleLine="false"
-            android:text="" />
+            android:text=""/>
 
         <Button
             android:id="@+id/btn_ver_notas"
@@ -26,6 +27,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ver Notas" />
+
+        <ListView
+            android:id="@+id/txt_lista"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

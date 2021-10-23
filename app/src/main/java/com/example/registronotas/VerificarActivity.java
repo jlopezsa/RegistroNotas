@@ -3,12 +3,16 @@ package com.example.registronotas;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +28,9 @@ public class VerificarActivity extends AppCompatActivity {
 
     private TextView muestra_resultado;
     private Button boton_ver_datos;
+    private ListView lista_pantalla;
+
+
     private Materia materia_reg;
     private GuardaEnTexto leerDatos = new GuardaEnTexto(this);
 
@@ -34,6 +41,10 @@ public class VerificarActivity extends AppCompatActivity {
         //Log.i("VERIFICAR","Flag 1");
 
         muestra_resultado = (TextView)findViewById(R.id.txt_visualizar);
+        muestra_resultado.setMovementMethod(new ScrollingMovementMethod()); // adicionar para scroll
+
+        lista_pantalla = (ListView)findViewById(R.id.txt_lista);
+
         boton_ver_datos = (Button)findViewById(R.id.btn_ver_notas);
 
         // Recibiendo objeto desde Main
@@ -60,20 +71,16 @@ public class VerificarActivity extends AppCompatActivity {
                 String timeStamp = formatoHoraFecha.format(Calendar.getInstance().getTime());
                 muestra_resultado.append(timeStamp+"\n");
 
-                //    muestra_resultado.setText("Alumnos no registrados \n");
-                //    muestra_resultado.append("Intente de nuevo \n");
+                //muestra_resultado.setText("Alumnos no registrados \n");
+                //muestra_resultado.append("Intente de nuevo \n");
 
-                    List<String> ver_datos = leerDatos.leeArchivo();
-                    //Log.i("VERIFICAR",String.valueOf(ver_datos.size()));
-                    for (int i = 0; i < ver_datos.size(); i++) {
-                        Log.i("VERIFICAR",ver_datos.get(i)+"\n");
-                        muestra_resultado.append(ver_datos.get(i)+"\n");
-                        //Log.i("VERIFICAR",String.valueOf(i));
+                List<String> ver_datos = leerDatos.leeArchivo();
 
-                    }
+                for (int i = 0; i < ver_datos.size(); i++) {
 
+                    muestra_resultado.append(ver_datos.get(i)+"\n");
 
-
+                }
                 //}
             }
         });
