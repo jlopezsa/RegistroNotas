@@ -75,11 +75,27 @@ public class VerificarActivity extends AppCompatActivity {
                 //muestra_resultado.append("Intente de nuevo \n");
 
                 List<String> ver_datos = leerDatos.leeArchivo();
-
                 for (int i = 0; i < ver_datos.size(); i++) {
-
+                    // Muestra información del archivo txt en un TextView.
                     muestra_resultado.append(ver_datos.get(i)+"\n");
 
+                    // Extraer datos del archivo txt para procesarlos en el código
+                    String dato_linea = ver_datos.get(i);   // dato_linea: guarda la información de la linea i del archivo txt
+                    String [] datos_separados = dato_linea.split(";");  // datos_separados: es un vector que guarda los datos de la línea separados por ";"
+
+                    // Las siguientes líneas muestran como manipular los datos de la línea de forma individual
+                    Log.i("Primer dato de la línea",datos_separados[0]);
+                    Log.i("Segundo dato de la línea",datos_separados[1]);
+                    float aux_nota = Float.valueOf(datos_separados[2]);
+                    Log.i("Tercer dato de la línea x 2",String.valueOf(aux_nota*2));
+
+                    // Forma de comparar un String del archivo txt con una palabra cualquier, ejemplo "Carlos"
+                    if(datos_separados[0].equals("Carlos")){
+                        Log.i("COMPARA","Carlos está en la linea " +String.valueOf(i)+" del texto");
+                    }
+                    else {
+                        Log.i("COMPARA","Carlos NO está en la linea "+String.valueOf(i)+" del texto");
+                    }
                 }
                 //}
             }
