@@ -30,7 +30,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="" />
+                android:text="digitales" />
 
         </LinearLayout>
 
@@ -53,7 +53,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="" />
+                android:text="Julian Lopez" />
 
         </LinearLayout>
 
@@ -91,7 +91,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="" />
+                android:text="2" />
 
         </LinearLayout>
 
@@ -115,7 +115,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="" />
+                android:text="3" />
 
         </LinearLayout>
 
@@ -139,7 +139,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="" />
+                android:text="4" />
 
         </LinearLayout>
 

@@ -47,7 +47,7 @@ public class RegistrarActivity extends AppCompatActivity implements Serializable
 
         materia_reg = new Materia();
 
-        guardar.limpiaArchivo();
+        //guardar.limpiaArchivo();
 
         boton_reg_alumno.setOnClickListener(new View.OnClickListener() {
             @Override

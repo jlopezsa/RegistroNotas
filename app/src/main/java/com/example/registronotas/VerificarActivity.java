@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -110,7 +112,7 @@ public class VerificarActivity extends AppCompatActivity {
         boton_enviar_correo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                enviarCorreo(ver_datos);
+                enviarCorreo();
             }
         });
     }
@@ -143,26 +145,12 @@ public class VerificarActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void enviarCorreo(List<String> xxx){
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        String dato_linea = xxx.get(0);
-        String [] datos_separados = dato_linea.split(";");
-        sendIntent.putExtra(Intent.EXTRA_TEXT, xxx.get(0));
-        sendIntent.setType("text/plain");
-
-        Intent shareIntent = Intent.createChooser(sendIntent, null);
-        startActivity(shareIntent);
-
-        /*
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-
-        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("data/data/com.example.registronotas/files/datos_estudiante.txt"));
-        shareIntent.setType("text/txt");
-        startActivity(shareIntent);
-        //startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.send_to)));
-         */
+    private void enviarCorreo(){
+        //https://coderedirect.com/questions/552769/how-to-share-txt-file-in-android
+        File file = new File(Environment.getExternalStorageDirectory().toString() + "/" + "datos_fichero.txt");
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/*");
+        sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + file.getAbsolutePath()));
+        startActivity(Intent.createChooser(sharingIntent, "Enviar archivo usando:"));
     }
-
 }

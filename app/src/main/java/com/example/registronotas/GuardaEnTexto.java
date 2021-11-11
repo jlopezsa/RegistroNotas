@@ -1,7 +1,9 @@
 package com.example.registronotas;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -11,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
     public class GuardaEnTexto {
-    private static String FICHERO = "datos_estudiante.txt";
+    //private static String FICHERO = "datos_estudiante.txt";
+    private static String FICHERO = Environment.getExternalStorageDirectory().getPath()+"/datos_fichero.txt";
 
     private Context context;
 
@@ -21,7 +24,13 @@ import java.util.List;
 
     public void escribeArchivo(Estudiante estudiantes) {
         try {
-            FileOutputStream f = context.openFileOutput(FICHERO, Context.MODE_APPEND);
+            String stadoSD = Environment.getExternalStorageState();
+            if(!stadoSD.equals(Environment.MEDIA_MOUNTED)){
+                Toast.makeText(context,"No puede leer la memoria externa",Toast.LENGTH_LONG).show();
+                return;
+            }
+            //FileOutputStream f = context.openFileOutput(FICHERO, Context.MODE_APPEND);
+            FileOutputStream f = new FileOutputStream(FICHERO,true);
             // La siguiente linea muestra como guardar los datos en el archivo <----
             String texto = estudiantes.getNombre()+";"+estudiantes.getTotal_corte()+";"+estudiantes.getNotas_corte().getParcial()+"\n";
             f.write(texto.getBytes());
@@ -34,7 +43,8 @@ import java.util.List;
     public List<String> leeArchivo(){
         List<String> resultado = new ArrayList<String>();
         try {
-            FileInputStream f = context.openFileInput(FICHERO);
+            //FileInputStream f = context.openFileInput(FICHERO);
+            FileInputStream f = new FileInputStream(FICHERO);
             BufferedReader entrada = new BufferedReader(new InputStreamReader(f));
             int n = 0;
             String linea;
@@ -55,7 +65,8 @@ import java.util.List;
 
     public void limpiaArchivo(){
         try {
-            FileOutputStream f = context.openFileOutput(FICHERO,Context.MODE_APPEND);
+            //FileOutputStream f = context.openFileOutput(FICHERO,Context.MODE_APPEND);
+            FileOutputStream f = new FileOutputStream(FICHERO,true);
             f.write(("").getBytes());
             f.close();
         }catch(Exception e){
@@ -66,4 +77,6 @@ import java.util.List;
     public String getFICHERO(){
         return FICHERO;
     }
+
+
 }
