@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuardaEnTexto {
+    public class GuardaEnTexto {
     private static String FICHERO = "datos_estudiante.txt";
 
     private Context context;
@@ -22,7 +22,8 @@ public class GuardaEnTexto {
     public void escribeArchivo(Estudiante estudiantes) {
         try {
             FileOutputStream f = context.openFileOutput(FICHERO, Context.MODE_APPEND);
-            String texto = estudiantes.getNombre()+";"+estudiantes.getTotal_corte()+";"+estudiantes.getNotas_corte().getParcial()+"\n"; // <---  Datos para guardar en archivo <----
+            // La siguiente linea muestra como guardar los datos en el archivo <----
+            String texto = estudiantes.getNombre()+";"+estudiantes.getTotal_corte()+";"+estudiantes.getNotas_corte().getParcial()+"\n";
             f.write(texto.getBytes());
             f.close();
         }catch(Exception e){
@@ -60,5 +61,9 @@ public class GuardaEnTexto {
         }catch(Exception e){
             Log.e("GUARDA-WRITE",e.getMessage(),e);
         }
+    }
+
+    public String getFICHERO(){
+        return FICHERO;
     }
 }

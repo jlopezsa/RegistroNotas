@@ -2,6 +2,7 @@ package com.example.registronotas;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -28,7 +29,9 @@ public class VerificarActivity extends AppCompatActivity {
 
     private TextView muestra_resultado;
     private Button boton_ver_datos;
-    private ListView lista_pantalla;
+    private Button boton_enviar_correo;
+    private List<String> ver_datos;
+    //private ListView lista_pantalla;
 
 
     private Materia materia_reg;
@@ -43,9 +46,10 @@ public class VerificarActivity extends AppCompatActivity {
         muestra_resultado = (TextView)findViewById(R.id.txt_visualizar);
         muestra_resultado.setMovementMethod(new ScrollingMovementMethod()); // adicionar para scroll
 
-        lista_pantalla = (ListView)findViewById(R.id.txt_lista);
+        //lista_pantalla = (ListView)findViewById(R.id.txt_lista);
 
         boton_ver_datos = (Button)findViewById(R.id.btn_ver_notas);
+        boton_enviar_correo = (Button)findViewById(R.id.btn_enviar_correo);
 
         // Recibiendo objeto desde Main
         Bundle objeto_rx_of_main = getIntent().getExtras();
@@ -74,14 +78,16 @@ public class VerificarActivity extends AppCompatActivity {
                 //muestra_resultado.setText("Alumnos no registrados \n");
                 //muestra_resultado.append("Intente de nuevo \n");
 
-                List<String> ver_datos = leerDatos.leeArchivo();
+                ver_datos = leerDatos.leeArchivo();
                 for (int i = 0; i < ver_datos.size(); i++) {
                     // Muestra información del archivo txt en un TextView.
                     muestra_resultado.append(ver_datos.get(i)+"\n");
 
                     // Extraer datos del archivo txt para procesarlos en el código
-                    String dato_linea = ver_datos.get(i);   // dato_linea: guarda la información de la linea i del archivo txt
-                    String [] datos_separados = dato_linea.split(";");  // datos_separados: es un vector que guarda los datos de la línea separados por ";"
+                    // dato_linea: guarda la información de la linea i del archivo txt
+                    String dato_linea = ver_datos.get(i);
+                    // datos_separados: es un vector que guarda los datos de la línea separados por ";"
+                    String [] datos_separados = dato_linea.split(";");
 
                     // Las siguientes líneas muestran como manipular los datos de la línea de forma individual
                     Log.i("Primer dato de la línea",datos_separados[0]);
@@ -98,6 +104,13 @@ public class VerificarActivity extends AppCompatActivity {
                     }
                 }
                 //}
+            }
+        });
+
+        boton_enviar_correo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                enviarCorreo(ver_datos);
             }
         });
     }
@@ -128,6 +141,28 @@ public class VerificarActivity extends AppCompatActivity {
     public void lanzarAyuda(View view){
         Intent i = new Intent(this,AyudaActivity.class);
         startActivity(i);
+    }
+
+    private void enviarCorreo(List<String> xxx){
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        String dato_linea = xxx.get(0);
+        String [] datos_separados = dato_linea.split(";");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, xxx.get(0));
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
+
+        /*
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+
+        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("data/data/com.example.registronotas/files/datos_estudiante.txt"));
+        shareIntent.setType("text/txt");
+        startActivity(shareIntent);
+        //startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.send_to)));
+         */
     }
 
 }

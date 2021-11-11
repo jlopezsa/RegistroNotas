@@ -28,10 +28,12 @@
             android:layout_height="wrap_content"
             android:text="Ver Notas" />
 
-        <ListView
-            android:id="@+id/txt_lista"
+        <Button
+            android:id="@+id/btn_enviar_correo"
+            style="@style/EstiloBoton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:text="Enviar registro" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
