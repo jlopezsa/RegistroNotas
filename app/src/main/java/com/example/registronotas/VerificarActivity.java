@@ -1,6 +1,7 @@
 package com.example.registronotas;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +34,8 @@ public class VerificarActivity extends AppCompatActivity {
     private TextView muestra_resultado;
     private Button boton_ver_datos;
     private Button boton_enviar_correo;
+
+    private Button boton_borrar;
     private List<String> ver_datos;
     //private ListView lista_pantalla;
 
@@ -52,6 +56,7 @@ public class VerificarActivity extends AppCompatActivity {
 
         boton_ver_datos = (Button)findViewById(R.id.btn_ver_notas);
         boton_enviar_correo = (Button)findViewById(R.id.btn_enviar_correo);
+        boton_borrar = (Button) findViewById(R.id.btn_borrar);
 
         // Recibiendo objeto desde Main
         Bundle objeto_rx_of_main = getIntent().getExtras();
@@ -92,10 +97,10 @@ public class VerificarActivity extends AppCompatActivity {
                     String [] datos_separados = dato_linea.split(";");
 
                     // Las siguientes líneas muestran como manipular los datos de la línea de forma individual
-                    Log.i("Primer dato de la línea",datos_separados[0]);
-                    Log.i("Segundo dato de la línea",datos_separados[1]);
-                    float aux_nota = Float.valueOf(datos_separados[2]);
-                    Log.i("Tercer dato de la línea x 2",String.valueOf(aux_nota*2));
+                    //Log.i("Primer dato de la línea",datos_separados[0]);
+                    //Log.i("Segundo dato de la línea",datos_separados[1]);
+                    //float aux_nota = Float.valueOf(datos_separados[2]);
+                    //Log.i("Tercer dato de la línea x 2",String.valueOf(aux_nota*2));
 
                     // Forma de comparar un String del archivo txt con una palabra cualquier, ejemplo "Carlos"
                     if(datos_separados[0].equals("Carlos")){
@@ -113,6 +118,37 @@ public class VerificarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 enviarCorreo();
+            }
+        });
+
+        boton_borrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder pregunta = new AlertDialog.Builder(VerificarActivity.this);
+                pregunta.setTitle("Advertencia");
+                pregunta.setMessage("¿En verdad desea borrar el registro?");
+                pregunta.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        leerDatos.limpiaArchivo();
+                        AlertDialog.Builder alerta = new AlertDialog.Builder(VerificarActivity.this);
+                        alerta.setMessage("El registro de notas fue borrado");
+                        AlertDialog titulo = alerta.create();
+                        titulo.setTitle("Información");
+                        titulo.show();
+                    }
+                });
+
+                pregunta.setNegativeButton("No",null);
+
+                AlertDialog dialog = pregunta.create();
+                dialog.show();
+
+
+
+
+
             }
         });
     }
@@ -150,6 +186,7 @@ public class VerificarActivity extends AppCompatActivity {
         File file = new File(Environment.getExternalStorageDirectory().toString() + "/" + "datos_fichero.txt");
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/*");
+        Log.i("FLAG",file.getAbsolutePath());
         sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + file.getAbsolutePath()));
         startActivity(Intent.createChooser(sharingIntent, "Enviar archivo usando:"));
     }

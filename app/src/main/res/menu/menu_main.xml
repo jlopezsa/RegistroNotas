@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
-    <item
-        android:id="@+id/actionbar_registrar"
-        android:title="Registrar"
-        android:orderInCategory="1"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/actionbar_verificar"
-        android:title="Verificar"
-        android:orderInCategory="2"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/actionbar_ayuda"
-        android:title="Ayuda"
-        android:icon="@drawable/information_icon_72px"
-        android:orderInCategory="3"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/actionbar_otros1"
-        android:title="Otros 1"
-        android:orderInCategory="4"
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/actionbar_otors2"
-        android:title="Otros 2"
-        android:orderInCategory="5"
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/actionbar_otros3"
-        android:title="Otros 3"
-        android:orderInCategory="6"
-        app:showAsAction="ifRoom"/>
+    <menu
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".MainActivity">
+        <item
+            android:id="@+id/actionbar_registrar"
+            android:title="Registrar"
+            android:orderInCategory="1"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/actionbar_verificar"
+            android:title="Verificar"
+            android:orderInCategory="2"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/actionbar_ayuda"
+            android:title="Ayuda"
+            android:icon="@drawable/information_icon_72px"
+            android:orderInCategory="3"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/actionbar_otros1"
+            android:title="Otros 1"
+            android:orderInCategory="4"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/actionbar_otors2"
+            android:title="Otros 2"
+            android:orderInCategory="5"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/actionbar_otros3"
+            android:title="Otros 3"
+            android:orderInCategory="6"
+            app:showAsAction="never"/>
 
-</menu>
+    </menu>

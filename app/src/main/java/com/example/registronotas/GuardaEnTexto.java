@@ -8,7 +8,9 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +41,40 @@ import java.util.List;
             Log.e("GUARDA-WRITE",e.getMessage(),e);
         }
     }
+    /*
+    public void limpiaArchivo(){
+        try {
+            String stadoSD = Environment.getExternalStorageState();
+            if(!stadoSD.equals(Environment.MEDIA_MOUNTED)){
+                Toast.makeText(context,"No puede leer la memoria externa",Toast.LENGTH_LONG).show();
+                return;
+            }
+            //FileOutputStream f = context.openFileOutput(FICHERO,Context.MODE_APPEND);
+            FileOutputStream f = new FileOutputStream(FICHERO,true);
+            String texto = "";
+            f.write(texto.getBytes());
+
+            f.close();
+        }catch(Exception e){
+            Log.e("GUARDA-WRITE",e.getMessage(),e);
+        }
+    }
+    */
+
+    public void limpiaArchivo(){
+
+        try {
+            String stadoSD = Environment.getExternalStorageState();
+            if(!stadoSD.equals(Environment.MEDIA_MOUNTED)){
+               Toast.makeText(context,"No puede leer la memoria externa",Toast.LENGTH_LONG).show();
+               return;
+            }
+            PrintWriter archivo = new PrintWriter(new FileWriter(FICHERO));
+        }catch(Exception e){
+            Log.e("MATERIA-READ",e.getMessage(),e);
+        }
+    }
+
 
     public List<String> leeArchivo(){
         List<String> resultado = new ArrayList<String>();
@@ -63,16 +99,7 @@ import java.util.List;
         return resultado;
     }
 
-    public void limpiaArchivo(){
-        try {
-            //FileOutputStream f = context.openFileOutput(FICHERO,Context.MODE_APPEND);
-            FileOutputStream f = new FileOutputStream(FICHERO,true);
-            f.write(("").getBytes());
-            f.close();
-        }catch(Exception e){
-            Log.e("GUARDA-WRITE",e.getMessage(),e);
-        }
-    }
+
 
     public String getFICHERO(){
         return FICHERO;
